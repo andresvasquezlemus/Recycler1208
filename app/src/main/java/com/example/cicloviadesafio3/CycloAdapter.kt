@@ -1,0 +1,33 @@
+package com.example.cicloviadesafio3
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ciromine.ciclobike.Ciclovia
+
+class CycloAdapter (private val listadoCiclos:MutableList<Ciclovia>):
+RecyclerView.Adapter<CycloAdapter.CycloViewHolder>(){
+
+
+
+    class CycloViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var cycloTv: TextView = itemView.findViewById(R.id.cyclo_tv)
+        var comunaTv: TextView = itemView.findViewById(R.id.comuna_tv)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CycloViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.cyclo_item_list,parent, false)
+        return CycloViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return listadoCiclos.size
+    }
+
+    override fun onBindViewHolder(holder: CycloViewHolder, position: Int) {
+        holder.comunaTv.text = listadoCiclos[position].comuna
+        holder.cycloTv.text = listadoCiclos[position].nombre
+    }
+}
